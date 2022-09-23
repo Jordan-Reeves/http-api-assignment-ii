@@ -29,20 +29,32 @@
           break;
       }
       
-      let obj = await response.json();
-      if(obj) {
-        console.log(obj);
-      }
-      
-      if(obj.message){
-        content.innerHTML += `<p>Message: ${obj.message}</p>`;
-      }
-      else if(parseResponse){
-        //To display the data easily, we will just stringify it again and display it.
-        let jsonString = JSON.stringify(obj.users);
-        content.innerHTML += `<p>${jsonString}</p>`;
-      }
+      // let obj = await response.json();
+      // if(obj) {
+      //   console.log(obj);
+      // }
 
+      // if(obj.message){
+      //   content.innerHTML += `<p>Message: ${obj.message}</p>`;
+      // }
+      // else if(parseResponse){
+      //   //To display the data easily, we will just stringify it again and display it.
+      //   let jsonString = JSON.stringify(obj.users);
+      //   content.innerHTML += `<p>${jsonString}</p>`;
+      // }
+
+      if(parseResponse) {
+        //Parse the response to json. This is an async function, so we will await it.
+        let obj = await response.json();
+        if(obj.message){
+           content.innerHTML += `<p>Message: ${obj.message}</p>`;
+        }
+        else if(obj.users){
+          //To display the data easily, we will just stringify it again and display it.
+          let jsonString = JSON.stringify(obj.users);
+          content.innerHTML += `<p>${jsonString}</p>`;
+        }
+     }
     };
 
     const sendPost = async (nameForm) => {
