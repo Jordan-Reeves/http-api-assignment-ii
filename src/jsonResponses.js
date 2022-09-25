@@ -52,7 +52,7 @@ const addUser = (request, response, body) => {
 
   // user created
   if (responseCode === 201) {
-    responseJSON.message = 'Created successfully.';
+    responseJSON.message = 'Created successfully';
     return respondJSON(request, response, responseCode, responseJSON);
   }
 
